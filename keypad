@@ -1,0 +1,33 @@
+#include <Keypad.h>
+
+const byte jumlahBaris = 4;
+const byte jumlahKolom = 4;
+
+char petaTombol [jumlahBaris][jumlahKolom] = 
+{
+  {'1','2','3','A'},
+  {'4','5','6','B'},
+  {'7','8','9','C'},
+  {'*','0','#','D'},
+};
+
+byte pinBaris[jumlahBaris]={9,8,7,6};
+byte pinKolom[jumlahKolom]={5,4,3,2};
+
+Keypad tombol = Keypad(makeKeymap(petaTombol), pinBaris, pinKolom, jumlahBaris, jumlahKolom);
+
+
+void setup()
+{
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  char tombolDitekan = tombol.getKey();
+  if(tombolDitekan != NO_KEY)
+  {
+    Serial.print ("Anda Menekan Tombol = ");
+    Serial.println(tombolDitekan);
+  }
+}
